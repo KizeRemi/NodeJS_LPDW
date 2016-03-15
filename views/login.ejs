@@ -1,0 +1,27 @@
+<% include partials/header %>
+<body>
+  <div class="container">
+    <div class="row">
+      <h4 class="col-sm-offset-4"> Connexion de l'utilisateur </h4>
+      </br>
+      <form action="/login" method="post" class="form-horizontal">
+        <div class="col-md-9">
+          <div class="form-group">
+           <label class="col-sm-6 control-label">Username:</label>
+           <input type="text" name="username"/>
+         </div>
+         <div class="form-group">
+           <label class="col-sm-6 control-label">Password:</label>
+           <input type="password" name="password"/>
+         </div>
+         <div class="col-sm-offset-5 col-sm-5">
+           <button type="submit" value="Se connecter" class="btn btn-default">Se connecter</button>
+           <a href="/signup">S'enregistrer</a>
+         </div>
+         </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+<% include partials/footer %>

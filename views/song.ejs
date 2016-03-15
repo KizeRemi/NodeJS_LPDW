@@ -1,0 +1,48 @@
+<% include partials/header %>
+<div class="container">
+  <h2><%=song.title%></h2>            
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Artist</th>
+        <th>Album</th>
+        <th>Année</th>
+        <th>BPM</th>
+        <th>Note</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%=song.artist%></td>
+        <td><%=song.album%></td>
+        <td><% if (song.year) { %>
+               <%=song.year%><br/>
+            <% } %>
+        </td>
+        <td><% if (song.bpm) { %>
+               <%=song.bpm%><br/>
+            <% } %>
+        </td>
+        <td>
+          
+         <td>
+         <div class="row">
+            <% if (user_admin) { %>
+              <button class="btn btn-primary btn-xs"<a href="/songs/edit/<%=song._id%>">Editer</a>
+            <% } %>
+                <form action="/songs/favoris/<%=song._id%>" method="post">
+                   <button type="submit" class="btn btn-default btn-xs">Ajouter aux favoris
+                   </button>
+                </form><br/>
+              <form action="/songs/favoris/<%=song._id%> method="post">
+                <button type="submit" name="_method" value="delete" class="btn btn-danger btn-xs">Supprimer des favoris</button>
+              </form>
+         </div>
+         </td>
+      </tr>
+    </tbody>
+  </table>
+   <a href="/songs">Tous les chansons</a>
+   </div>
+<% include partials/footer %>

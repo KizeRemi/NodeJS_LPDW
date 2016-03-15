@@ -1,0 +1,24 @@
+<% include partials/header %>
+<div  style="margin-top:100px" class="container">
+  <div class="col-lg-6">
+      <h2>Réseaux d'utilisateurs</h2>
+
+      <table class="table table">
+          <thead>
+              <tr>
+                  <th>Nom d'utilisateur</th>
+                  <th>Inscrit le</th>
+                  <th>Action</th>
+              </tr>
+          </thead>
+          <% users.forEach(function(user) {%>
+            <tr>
+                <td><%= user.username %></td>
+                <td><%= user.createdAt %> </td>
+                <td><a href="/users/<%=user.id%>">Voir le profil</a> </td>
+            </tr>
+          <% }) %>
+      </table>
+  </div>
+</div>
+<% include partials/footer %>

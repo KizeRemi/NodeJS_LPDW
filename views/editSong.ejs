@@ -1,0 +1,11 @@
+<% include partials/header %>
+<div  style="margin-top:100px" class="container">
+   <%if (err) {%>
+        <div style="color:red"><%=err%></div>
+        <hr/>
+   <%} %>
+   <form method="POST" action="/songs/<%= song._id%>?_method=put">
+        <% include _formSong %>
+   </form>
+</div>
+<% include partials/footer %>

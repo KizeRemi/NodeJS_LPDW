@@ -1,0 +1,38 @@
+<% include partials/header %>
+<div  style="margin-top:100px" class="container">
+  <h1><%= user.username %> - <%= user.displayName %></h1>
+  <% if (user._id == user._id) { %>
+  <div class="col-lg-6">
+       <% if(user.username == "admin") { %>
+      <h2> Ajouter une chanson </h2>
+      <a href="/songs/add"><button class="btn btn-success">Ajouter</button></a>
+      <% } %>
+      <h2>Chansons favoris </h2>
+      <table class="table table-condensed">
+          <thead>
+              <tr>
+                  <th>Chanson</th>
+                  <th>Lien</th>
+                  <th>Supprimer</th>
+              </tr>
+          </thead>
+          <% favoriteSongs.forEach(function(song) { %>
+            <tr>
+                <td>
+                  <%= song.title %>
+                </td>
+                <td><a href="/songs/<%= song._id %>"><button class="btn btn-default">Voir</button></a></td>
+                <td>
+                  <form method="post" action="/songs/favoris/<%=song%>?_method=delete"">
+                        <input type="hidden" hidden name="song_id" id="song_id" value="<%= song._id %>">
+                        <button class="btn btn-link" type="submit"><i class="fa fa-trash"></i></button>
+                  </form>
+                </td>
+            </tr>
+            <% })%>
+      </table>
+      <form id="deleteAll" action="/songs/favoris/all?_method=delete" method="post"><button form="deleteAll" class="btn btn-danger">Supprimer tous les favoris</button></form>
+  </div>
+<% } %>
+</div>
+<% include partials/footer %>

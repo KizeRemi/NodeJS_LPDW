@@ -1,0 +1,43 @@
+<% include partials/header %>
+<div  style="margin-top:100px" class="container">
+  <h1><%= user.username %> - <%= user.displayName %></h1>
+  <% if (user._id == user._id) { %>
+  <div class="col-lg-6">
+      <h2>Informations</h2>
+      <table class="table table">
+          <thead>
+              <tr>
+                  <th>Nom d'utilisateur</th>
+                  <th>Nom</th>
+                  <th>Inscrit le</th>
+              </tr>
+          </thead>
+            <tr>
+                <td><%= user.username %></td>
+                <td><%= user.displayName %></td>
+                <td><%= user.createdAt %> </td>
+            </tr>
+      </table>
+      <h2>Chansons favoris </h2>
+      <table class="table table-condensed">
+          <thead>
+              <tr>
+                  <th>Chanson</th>
+                  <th>Lien</th>
+              </tr>
+          </thead>
+          <% user.favoriteSongs.forEach(function(song) { %>
+            <tr>
+                <td>
+                  <%= song %>
+                </td>
+                <td><a href="/songs/<%= song %>"><button class="btn btn-default">Voir</button></a></td>
+                <td>
+                </td>
+            </tr>
+            <% })%>
+      </table>
+  </div>
+<% } %>
+</div>
+<% include partials/footer %>
