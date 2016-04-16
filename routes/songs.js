@@ -22,6 +22,7 @@ router.get('/', function(req, res) {
                 request = {album: req.query.filtreText};
         }
         if(req.query.filtre && req.query.filtreText){
+        // cette validation est repetée plusieurs fois... tu peux la refactorer
             if(req.query.filtre == "title")
                 request = {title: req.query.filtreText};
         }
@@ -225,6 +226,7 @@ router.delete('/:id', verifyIsAdmin, function(req, res) {
     ;
 });
 router.post('/favoris/:id', function(req, res) {
+    // L'url ne fait reference au fait qu'on modifie un utilisateur. **POST /users/me/favorites/:song_id** aurait été plus parlant
     UserService.addFavorite(req.user._id, req.params.id)
         .then(function(user) {
             if (req.accepts('text/html')) {
@@ -232,6 +234,8 @@ router.post('/favoris/:id', function(req, res) {
             }
             if (req.accepts('application/json')) {
                 res.status(201).send(user);
+                // 201 est utilisé pour une création. Là on est sur plus sur l'ajout d'une reference sur un objet existant.
+                // je dirais plutôt un 200
             }
         })
         .catch(function(err) {
@@ -242,6 +246,11 @@ router.post('/favoris/:id', function(req, res) {
 router.delete('/favoris/:id', function(req, res) {
     UserService.deleteFavorites(req.user._id, req.params.id)
         .then(function(user) {
+            // tu ne fais que le traitement du cas application/json et pas le cas text/html, du coup sur la vue les chansons ne se
+            // mettent pas à jour après la supression. Il suffisait de faire
+            if (req.accepts('text/html')) {
+                res.redirect('/users/profil');
+            }
             if (req.accepts('application/json')) {
                 res.status(204).send();
             }

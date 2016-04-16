@@ -5,6 +5,7 @@ var UserService = require('../services/users');
 router.get('/', function(req, res, next) {
     if (req.accepts('text/html') || req.accepts('application/json')) {
                 UserService.findLastUsers()
+                    // Il n'y a pas l'appel pour les chansons les mieux notées
                     .then(function(users) {
                         if (req.accepts('text/html')) {
                             return res.render('index', {lastUser: users});

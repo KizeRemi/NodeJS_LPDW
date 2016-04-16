@@ -29,7 +29,9 @@
          <td>
          <div class="row">
             <% if (user_admin) { %>
+             <!-- tu vois, ici on a la validation sur le profil de l'user afin d'afficher le lien seulement à l'admin-->
               <button class="btn btn-primary btn-xs"<a href="/songs/edit/<%=song._id%>">Editer</a>
+             <!-- attention, ta balise button n'est pas bien fermée ! -->
             <% } %>
                 <form action="/songs/favoris/<%=song._id%>" method="post">
                    <button type="submit" class="btn btn-default btn-xs">Ajouter aux favoris
