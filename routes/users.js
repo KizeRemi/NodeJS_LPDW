@@ -30,6 +30,7 @@ router.get('/profil', function(req, res) {
                 return;
             }
             SongService.find({_id: { $in: user.favoriteSongs}})
+                // bien joué !
                 .then(function(songs){
                     if (req.accepts('text/html')) {
                         return res.render('profil', {user: user, favoriteSongs: songs});
@@ -48,6 +49,8 @@ router.get('/:id', function(req, res) {
                 }
 
                 if (req.accepts('text/html')) {
+                    // par contre c'est dommage que t'ais pas fait la même requête pour recuperer les favoritesSong de cet user
+                    // pour l'afficher dans la vue, le principe était exactement le même
                     res.render('user', {user: user});
                     return;
                 }
